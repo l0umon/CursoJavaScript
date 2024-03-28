@@ -1,0 +1,55 @@
+notas JS
+
+Método shift
+El método shift() elimina el primer elemento del array y lo devuelve.
+
+const array = [1, 2, 3, 4, 5];
+
+array.shift();
+console.log(array);
+
+// Resultado -> [2, 3, 4, 5]
+Método pop
+El método pop() elimina el último elemento de un array y lo devuelve.
+
+const array = [1, 2, 3, 4, 5];
+
+array.pop();
+console.log(array);
+
+// Resultado -> [1, 2, 3, 4]
+Método splice
+El método splice() cambia el contenido de un array eliminando elementos existentes y/o agregando nuevos elementos.
+
+const meses = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo'];
+
+meses.splice(2, 1);
+console.log(meses);
+
+// Resultado -> ["Enero", "Febrero", "Abril", "Mayo"]
+Nota: También podemos añadir fácilmente elementos a un array con splice.
+
+const meses = ['Enero', 'Marzo', 'Abril', 'Mayo'];
+
+meses.splice(1, 0, 'Febrero');
+console.log(meses);
+
+// Resultado -> ["Enero", "Febrero", "Marzo", "Abril", "Mayo"]
+delete
+Podemos eliminar la posición del array que queramos, pero nos lo dejará en un valor undefined.
+
+const dias = ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo'];
+
+delete(dias[2])
+console.log(dias);
+
+// Resultado -> ["Lunes", "Martes", undefined, "Jueves", "Viernes", "Sábado", "Domingo"]
+filter
+Podemos filtrar el array y devolver únicamente los resultados que queramos:
+
+const animales = ['perro', 'gato', 'oso', 'pájaro', 'hormiga'];
+
+const resultado = animales.filter(animal => animal != 'oso');
+console.log(resultado);
+
+// Resultado -> ["perro", "gato", "pájaro", "hormiga"]
