@@ -17,6 +17,7 @@ const  btnDetener = document.querySelector('#btnDetener');
 const puntosHTML = document.querySelectorAll('small')
 
 const divCartasJugador= document.querySelector('#jugador-cartas')
+const divCartasComputadora= document.querySelector('#computadora-cartas')
 
 let puntosJugador= 0,
     puntosComputadora=0;
@@ -64,10 +65,31 @@ const pedirCarta = () => {
     return carta;
 
 }
+//cartas computadora
+
+const turnoComputadora= (puntosMinimos) => {
+do {
+    const carta= pedirCarta();
+    puntosComputadora+= valorCarta(carta);
+    // muestra los puntos en el html
+    puntosHTML[1].innerText= puntosComputadora;
+
+   // crear y mostrar la imagen
+    const imgCarta =document.createElement('img');
+    imgCarta.src = `/02-BlackJack/assets/cartas/cartas/${carta}.png`;
+    imgCarta.classList.add('carta');
+    divCartasComputadora.append(imgCarta);
+    if(puntosMinimos>21){
+        break;
+    }
+    
+ } while ((puntosComputadora<puntosMinimos)&&(puntosMinimos<=21));
+
+}
+
+
 
 // pedirCarta();
-
-
 const valorCarta  = (carta) => {
     const valor = carta.substring(0, carta.length-1);
     return (isNaN(valor)) ?
@@ -106,11 +128,26 @@ btnPedirCarta.addEventListener('click', () => {
     if (puntosJugador>21) {
         console.warn('Lo siento, ha perdido');
         btnPedirCarta.disabled= true;
+        btnDetener.disabled= true;
+
+        turnoComputadora(puntosJugador);
 
     } else if (puntosJugador === 21){
         console.warn('21, genial!');
         btnPedirCarta.disabled= true;
+        btnDetener.disabled= true;
+
+        turnoComputadora(puntosJugador);
 
     } 
      
 }); 
+
+btnDetener.addEventListener('click', ()=>{
+    btnPedirCarta.disabled= true;
+    btnDetener.disabled= true;
+    turnoComputadora(puntosJugador);
+
+
+
+})
